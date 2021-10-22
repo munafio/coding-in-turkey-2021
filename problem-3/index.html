@@ -1,0 +1,54 @@
+<html>
+  <body>
+    <h2>Fridge Items</h2>
+    <table>
+      <thead>
+        <td>
+          <b>Item</b>
+        </td>
+        <td>
+          <b>Count</b>
+        </td>
+        <td>
+          <b>Remove</b>
+        </td>
+      </thead>
+      <tbody id="items"></tbody>
+    </table>
+    <br />
+    <input id="input" type="text" />
+    <button onClick="add(event)">Add</button>
+  </body>
+  <script>
+    var input = document.getElementById("input");
+    var itemsContainer = document.getElementById("items");
+
+    function itemComponent(title, count) {
+      const id = title.toLowerCase() + "_" + count.toString();
+      return `<tr id="${id}">
+          <td>${title}</td>
+          <td>${count}</td>
+          <td><button id="${id}" onClick="remove(this.id)">X</button></td>
+        </tr>`;
+    }
+    function add(event) {
+      event.preventDefault();
+      const inputParsed = input.value.split(" ");
+      const count = inputParsed.pop();
+      const title = inputParsed.join(" ");
+      itemsContainer.innerHTML += itemComponent(title, count);
+      input.value = "";
+    }
+    function remove(id) {
+      document.getElementById(id).classList.add("hidden");
+    }
+  </script>
+  <style>
+    .hidden {
+      display: none;
+    }
+    td {
+      padding-right: 50px;
+    }
+  </style>
+</html>

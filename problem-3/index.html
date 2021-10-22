@@ -33,9 +33,9 @@
     }
     function add(event) {
       event.preventDefault();
-      const inputParsed = input.value.split(" ");
-      const count = inputParsed.pop();
-      const title = inputParsed.join(" ");
+      const inputParsed = input.value.split(",");
+      const title = inputParsed[0];
+      const count = inputParsed[1];
       itemsContainer.innerHTML += itemComponent(title, count);
       input.value = "";
     }
